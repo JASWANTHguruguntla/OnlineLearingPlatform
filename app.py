@@ -160,7 +160,7 @@ def delete_course(course_id):
 
     return jsonify({"message": "Course deleted successfully"}), 200
 
-# Delete Student
+# DeleteStudent
 @app.route('/delete_student/<int:student_id>', methods=['DELETE'])
 def delete_student(student_id):
     student = Student.query.filter_by(student_id=student_id).first()
