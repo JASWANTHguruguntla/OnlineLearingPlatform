@@ -195,142 +195,170 @@
                             <i class="bi bi-moon-stars"></i> <!-- Dark Mode Icon -->
                         </button>
                     </li>
+                    <li class="nav-item">
+                        <button id="logoutButton" class="btn btn-danger ms-2 btn-hover-effect" style="display: none;">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section text-center py-5 bg-primary text-white">
+    <!-- Login/Signup Section -->
+    <section id="auth-section" class="py-5">
         <div class="container">
-            <h1 class="display-4 animate__animated animate__fadeIn">Welcome to Online Learning</h1>
-            <p class="lead animate__animated animate__fadeInUp">Learn, Grow, and Succeed with our courses.</p>
-        </div>
-    </section>
-
-    <!-- Add Course Section -->
-    <section id="add-course" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 animate__animated animate__fadeIn">Add a New Course</h2>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form id="addCourseForm" class="animate__animated animate__fadeInUp">
-                        <div class="mb-3">
-                            <input type="number" class="form-control" id="courseId" placeholder="Course ID" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="courseName" placeholder="Course Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="courseDescription" placeholder="Course Description" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="number" class="form-control" id="coursePrice" placeholder="Course Price" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Add Course</button>
-                    </form>
+                    <div id="auth-form">
+                        <h2 class="text-center mb-4">Login / Signup</h2>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="loginEmail" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Login</button>
+                        </form>
+                        <p class="text-center mt-3">Don't have an account? <a href="#" id="showSignup">Signup</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    <div id="main-content" style="display: none;">
+        <!-- Hero Section -->
+        <section class="hero-section text-center py-5 bg-primary text-white">
+            <div class="container">
+                <h1 class="display-4 animate__animated animate__fadeIn">Welcome to Online Learning</h1>
+                <p class="lead animate__animated animate__fadeInUp">Learn, Grow, and Succeed with our courses.</p>
+            </div>
+        </section>
 
-    <!-- Add Student Section -->
-    <section id="add-student" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4 animate__animated animate__fadeIn">Add a New Student</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <form id="addStudentForm" class="animate__animated animate__fadeInUp">
-                        <div class="mb-3">
-                            <input type="number" class="form-control" id="studentId" placeholder="Student ID" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="studentName" placeholder="Student Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" id="studentEmail" placeholder="Student Email" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Add Student</button>
-                    </form>
+        <!-- Add Course Section -->
+        <section id="add-course" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4 animate__animated animate__fadeIn">Add a New Course</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <form id="addCourseForm" class="animate__animated animate__fadeInUp">
+                            <div class="mb-3">
+                                <input type="number" class="form-control" id="courseId" placeholder="Course ID" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="courseName" placeholder="Course Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="courseDescription" placeholder="Course Description" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="number" class="form-control" id="coursePrice" placeholder="Course Price" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Add Course</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Enroll Student in Course Section -->
-    <section id="enroll-student" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 animate__animated animate__fadeIn">Enroll Student in Course</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <form id="enrollStudentForm" class="animate__animated animate__fadeInUp">
-                        <div class="mb-3">
-                            <input type="number" class="form-control" id="enrollStudentId" placeholder="Student ID" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="number" class="form-control" id="enrollCourseId" placeholder="Course ID" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Enroll Student</button>
-                    </form>
+        <!-- Add Student Section -->
+        <section id="add-student" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4 animate__animated animate__fadeIn">Add a New Student</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <form id="addStudentForm" class="animate__animated animate__fadeInUp">
+                            <div class="mb-3">
+                                <input type="number" class="form-control" id="studentId" placeholder="Student ID" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="studentName" placeholder="Student Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="studentEmail" placeholder="Student Email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Add Student</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Search Bar -->
-    <section class="py-3 bg-light">
-        <div class="container">
-            <input type="text" id="searchInput" placeholder="Search courses, students, or enrolled students..." class="form-control">
-        </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section id="courses" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 animate__animated animate__fadeIn">Available Courses</h2>
-            <div class="row" id="coursesList">
-                <!-- Courses will be dynamically added here -->
+        <!-- Enroll Student in Course Section -->
+        <section id="enroll-student" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4 animate__animated animate__fadeIn">Enroll Student in Course</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <form id="enrollStudentForm" class="animate__animated animate__fadeInUp">
+                            <div class="mb-3">
+                                <input type="number" class="form-control" id="enrollStudentId" placeholder="Student ID" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="number" class="form-control" id="enrollCourseId" placeholder="Course ID" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Enroll Student</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Students Section -->
-    <section id="students" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4 animate__animated animate__fadeIn">Registered Students</h2>
-            <div class="row" id="studentsList">
-                <!-- Students will be dynamically added here -->
+        <!-- Search Bar -->
+        <section class="py-3 bg-light">
+            <div class="container">
+                <input type="text" id="searchInput" placeholder="Search courses, students, or enrolled students..." class="form-control">
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Enrolled Students Section -->
-    <section id="enrolled-students" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 animate__animated animate__fadeIn">Enrolled Students</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Student Name</th>
-                            <th>Student Email</th>
-                            <th>Course ID</th>
-                            <th>Course Name</th>
-                            <th>Course Price</th>
-                        </tr>
-                    </thead>
-                    <tbody id="enrolledStudentsList">
-                        <!-- Enrolled students will be dynamically added here -->
-                    </tbody>
-                </table>
+        <!-- Courses Section -->
+        <section id="courses" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4 animate__animated animate__fadeIn">Available Courses</h2>
+                <div class="row" id="coursesList">
+                    <!-- Courses will be dynamically added here -->
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Students Section -->
+        <section id="students" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4 animate__animated animate__fadeIn">Registered Students</h2>
+                <div class="row" id="studentsList">
+                    <!-- Students will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Enrolled Students Section -->
+        <section id="enrolled-students" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4 animate__animated animate__fadeIn">Enrolled Students</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Student Email</th>
+                                <th>Course ID</th>
+                                <th>Course Name</th>
+                                <th>Course Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="enrolledStudentsList">
+                            <!-- Enrolled students will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2025 Online Learning Platform. All rights reserved.</p>
+        <p>&copy; 2023 Online Learning Platform. All rights reserved.</p>
     </footer>
 
     <!-- Back to Top Button -->
@@ -341,6 +369,108 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Firebase Authentication -->
+    <script type="module" defer>
+        // Import the functions you need from the Firebase SDKs
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+        import {
+            getAnalytics
+        } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            createUserWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAdpoI6ylpHlg-SU2s13xLTXeTpFzeMDCQ",
+            authDomain: "online-learning-platform1.firebaseapp.com",
+            projectId: "online-learning-platform1",
+            storageBucket: "online-learning-platform1.firebasestorage.app",
+            messagingSenderId: "575852252383",
+            appId: "1:575852252383:web:b31c658930c4b320d62d6a",
+            measurementId: "G-MBXBVC89S9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        // Login Function
+        document.getElementById("loginForm")?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            signInWithEmailAndPassword(auth, "jaswanthmemories@gmail.com", "jashu7896")
+                .then((userCredential) => {
+                    console.log("User logged in:", userCredential.user);
+                    document.getElementById("auth-section").style.display = "none";
+                    document.getElementById("main-content").style.display = "block";
+                    document.getElementById("logoutButton").style.display = "block";
+                })
+                .catch((error) => {
+                    console.error("Login error:", error.message);
+                });
+        });
+
+        // Signup Function
+        document.getElementById("signupForm")?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("signupEmail").value;
+            const password = document.getElementById("signupPassword").value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log("User signed up:", userCredential.user);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Signup Successful',
+                        text: 'You can now login with your credentials.',
+                    });
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.error("Signup error:", error.message);
+                });
+        });
+
+        // Logout Function
+        document.getElementById("logoutButton")?.addEventListener("click", () => {
+            signOut(auth)
+                .then(() => {
+                    console.log("User logged out");
+                    document.getElementById("auth-section").style.display = "block";
+                    document.getElementById("main-content").style.display = "none";
+                    document.getElementById("logoutButton").style.display = "none";
+                })
+                .catch((error) => {
+                    console.error("Logout error:", error.message);
+                });
+        });
+
+        // Check Auth State
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is logged in:", user.email);
+                document.getElementById("auth-section").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+                document.getElementById("logoutButton").style.display = "block";
+            } else {
+                console.log("User is logged out");
+                document.getElementById("auth-section").style.display = "block";
+                document.getElementById("main-content").style.display = "none";
+                document.getElementById("logoutButton").style.display = "none";
+            }
+        });
+    </script>
     <!-- Custom JS -->
     <script>
         const baseUrl = "http://127.0.0.1:5000"; // Backend URL
