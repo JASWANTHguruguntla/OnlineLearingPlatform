@@ -1,16 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Learning Platform</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Custom CSS -->
     <style>
         /* Custom Styles */
         body {
             font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            /* Deep black */
+            color: #ffffff;
+            /* White text */
+        }
+
+        .dark-mode h1,
+        .dark-mode h2,
+        .dark-mode h3,
+        .dark-mode h4,
+        .dark-mode h5,
+        .dark-mode h6 {
+            color: #ffffff;
+            /* White headings */
+        }
+
+        .dark-mode .card,
+        .dark-mode .table,
+        .dark-mode .form-control,
+        .dark-mode .bg-light {
+            background-color: #1e1e1e;
+            /* Dark grey */
+            color: #ffffff;
+            /* White text */
+            border-color: #444;
+            /* Darker border */
+        }
+
+        .dark-mode .form-control {
+            background-color: #1e1e1e;
+            /* Dark grey */
+            color: #ffffff;
+            /* White text */
+            border-color: #444;
+            /* Darker border */
+        }
+
+        .dark-mode .form-control::placeholder {
+            color: #999;
+            /* Light grey placeholder */
+        }
+
+        .dark-mode .navbar-dark,
+        .dark-mode footer {
+            background-color: #343a40 !important;
+            /* Dark navbar and footer */
+        }
+
+        .dark-mode .btn-primary {
+            background-color: #0d6efd;
+            /* Bootstrap primary blue */
+            border-color: #0d6efd;
+        }
+
+        .dark-mode .btn-danger {
+            background-color: #dc3545;
+            /* Bootstrap danger red */
+            border-color: #dc3545;
+        }
+
+        .dark-mode .table th,
+        .dark-mode .table td {
+            border-color: #444;
+            /* Darker borders for tables */
         }
 
         .hero-section {
@@ -22,13 +97,22 @@
             animation-duration: 1s;
         }
 
-        .course-card, .student-card, .enrolled-card {
+        .course-card,
+        .student-card,
+        .enrolled-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .course-card:hover, .student-card:hover, .enrolled-card:hover {
+        .course-card:hover,
+        .student-card:hover,
+        .enrolled-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-hover-effect:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease;
         }
 
         footer {
@@ -36,26 +120,51 @@
             padding: 20px 0;
         }
 
+        .sticky-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-section h1 {
                 font-size: 2rem;
             }
+
             .hero-section p {
                 font-size: 1rem;
             }
+
             .form-container {
                 padding: 15px;
             }
+
             .card {
                 margin-bottom: 15px;
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .navbar-nav .btn {
+                margin-top: 10px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-navbar">
         <div class="container">
             <a class="navbar-brand" href="#">Online Learning</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,6 +189,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#enroll-student">Enroll Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="darkModeToggle" class="btn btn-secondary ms-2 btn-hover-effect">
+                            <i class="bi bi-moon-stars"></i> <!-- Dark Mode Icon -->
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -113,7 +227,7 @@
                         <div class="mb-3">
                             <input type="number" class="form-control" id="coursePrice" placeholder="Course Price" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Add Course</button>
+                        <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Add Course</button>
                     </form>
                 </div>
             </div>
@@ -136,7 +250,7 @@
                         <div class="mb-3">
                             <input type="email" class="form-control" id="studentEmail" placeholder="Student Email" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Add Student</button>
+                        <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Add Student</button>
                     </form>
                 </div>
             </div>
@@ -156,15 +270,22 @@
                         <div class="mb-3">
                             <input type="number" class="form-control" id="enrollCourseId" placeholder="Course ID" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Enroll Student</button>
+                        <button type="submit" class="btn btn-primary w-100 btn-hover-effect">Enroll Student</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Search Bar -->
+    <section class="py-3 bg-light">
+        <div class="container">
+            <input type="text" id="searchInput" placeholder="Search courses, students, or enrolled students..." class="form-control">
+        </div>
+    </section>
+
     <!-- Courses Section -->
-    <section id="courses" class="py-5 bg-light">
+    <section id="courses" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4 animate__animated animate__fadeIn">Available Courses</h2>
             <div class="row" id="coursesList">
@@ -174,7 +295,7 @@
     </section>
 
     <!-- Students Section -->
-    <section id="students" class="py-5">
+    <section id="students" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4 animate__animated animate__fadeIn">Registered Students</h2>
             <div class="row" id="studentsList">
@@ -184,11 +305,25 @@
     </section>
 
     <!-- Enrolled Students Section -->
-    <section id="enrolled-students" class="py-5 bg-light">
+    <section id="enrolled-students" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4 animate__animated animate__fadeIn">Enrolled Students</h2>
-            <div class="row" id="enrolledStudentsList">
-                <!-- Enrolled students will be dynamically added here -->
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Student Email</th>
+                            <th>Course ID</th>
+                            <th>Course Name</th>
+                            <th>Course Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="enrolledStudentsList">
+                        <!-- Enrolled students will be dynamically added here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -198,15 +333,93 @@
         <p>&copy; 2023 Online Learning Platform. All rights reserved.</p>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button class="btn btn-primary back-to-top btn-hover-effect" onclick="scrollToTop()">↑</button>
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom JS -->
     <script>
         const baseUrl = "http://127.0.0.1:5000"; // Backend URL
 
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        darkModeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            const icon = darkModeToggle.querySelector("i");
+            if (document.body.classList.contains("dark-mode")) {
+                icon.classList.remove("bi-moon-stars");
+                icon.classList.add("bi-sun");
+            } else {
+                icon.classList.remove("bi-sun");
+                icon.classList.add("bi-moon-stars");
+            }
+        });
+
+        // Back to Top Button
+        window.onscroll = function() {
+            const backToTopButton = document.querySelector(".back-to-top");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        // Search Functionality
+        document.getElementById("searchInput").addEventListener("input", function() {
+            const searchTerm = this.value.toLowerCase();
+            filterCourses(searchTerm);
+            filterStudents(searchTerm);
+            filterEnrolledStudents(searchTerm);
+        });
+
+        function filterCourses(searchTerm) {
+            const courses = document.querySelectorAll(".course-card");
+            courses.forEach(course => {
+                const courseName = course.querySelector(".card-title").textContent.toLowerCase();
+                if (courseName.includes(searchTerm)) {
+                    course.style.display = "block";
+                } else {
+                    course.style.display = "none";
+                }
+            });
+        }
+
+        function filterStudents(searchTerm) {
+            const students = document.querySelectorAll(".student-card");
+            students.forEach(student => {
+                const studentName = student.querySelector(".card-title").textContent.toLowerCase();
+                if (studentName.includes(searchTerm)) {
+                    student.style.display = "block";
+                } else {
+                    student.style.display = "none";
+                }
+            });
+        }
+
+        function filterEnrolledStudents(searchTerm) {
+            const enrolledStudents = document.querySelectorAll("#enrolledStudentsList tr");
+            enrolledStudents.forEach(student => {
+                const studentName = student.textContent.toLowerCase();
+                if (studentName.includes(searchTerm)) {
+                    student.style.display = "table-row";
+                } else {
+                    student.style.display = "none";
+                }
+            });
+        }
+
         // Add Course
-        document.getElementById("addCourseForm").addEventListener("submit", async function (e) {
+        document.getElementById("addCourseForm").addEventListener("submit", async function(e) {
             e.preventDefault();
             const courseId = document.getElementById("courseId").value;
             const courseName = document.getElementById("courseName").value;
@@ -216,8 +429,15 @@
             try {
                 const response = await fetch(`${baseUrl}/add_course`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ courseId, name: courseName, description: courseDescription, price: coursePrice }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        courseId,
+                        name: courseName,
+                        description: courseDescription,
+                        price: coursePrice
+                    }),
                 });
 
                 if (!response.ok) {
@@ -225,18 +445,25 @@
                 }
 
                 const data = await response.json();
-                console.log(data);
-                alert("Course added successfully!");
-                document.getElementById("addCourseForm").reset(); // Clear input fields
-                fetchCourses(); // Refresh the courses list
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Course Added!',
+                    text: 'The course has been added successfully.',
+                });
+                document.getElementById("addCourseForm").reset();
+                fetchCourses();
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to add course. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to add course. Check the console for details.',
+                });
             }
         });
 
         // Add Student
-        document.getElementById("addStudentForm").addEventListener("submit", async function (e) {
+        document.getElementById("addStudentForm").addEventListener("submit", async function(e) {
             e.preventDefault();
             const studentId = document.getElementById("studentId").value;
             const studentName = document.getElementById("studentName").value;
@@ -245,8 +472,14 @@
             try {
                 const response = await fetch(`${baseUrl}/add_student`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ studentId, name: studentName, email: studentEmail }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        studentId,
+                        name: studentName,
+                        email: studentEmail
+                    }),
                 });
 
                 if (!response.ok) {
@@ -254,18 +487,25 @@
                 }
 
                 const data = await response.json();
-                console.log(data);
-                alert("Student added successfully!");
-                document.getElementById("addStudentForm").reset(); // Clear input fields
-                fetchStudents(); // Refresh the students list
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Student Added!',
+                    text: 'The student has been added successfully.',
+                });
+                document.getElementById("addStudentForm").reset();
+                fetchStudents();
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to add student. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to add student. Check the console for details.',
+                });
             }
         });
 
         // Enroll Student in Course
-        document.getElementById("enrollStudentForm").addEventListener("submit", async function (e) {
+        document.getElementById("enrollStudentForm").addEventListener("submit", async function(e) {
             e.preventDefault();
             const studentId = document.getElementById("enrollStudentId").value;
             const courseId = document.getElementById("enrollCourseId").value;
@@ -273,8 +513,13 @@
             try {
                 const response = await fetch(`${baseUrl}/enroll_student`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ studentId, courseId }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        studentId,
+                        courseId
+                    }),
                 });
 
                 if (!response.ok) {
@@ -282,13 +527,20 @@
                 }
 
                 const data = await response.json();
-                console.log(data);
-                alert("Student enrolled successfully!");
-                document.getElementById("enrollStudentForm").reset(); // Clear input fields
-                fetchEnrolledStudents(); // Refresh the enrolled students list
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Student Enrolled!',
+                    text: 'The student has been enrolled successfully.',
+                });
+                document.getElementById("enrollStudentForm").reset();
+                fetchEnrolledStudents();
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to enroll student. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to enroll student. Check the console for details.',
+                });
             }
         });
 
@@ -313,7 +565,7 @@
                                 <h5 class="card-title">${course.name} (ID: ${course.courseId})</h5>
                                 <p class="card-text">${course.description}</p>
                                 <p class="card-text"><strong>Price:</strong> $${course.price}</p>
-                                <button class="btn btn-danger btn-sm" onclick="deleteCourse(${course.courseId})">Delete</button>
+                                <button class="btn btn-danger btn-sm btn-hover-effect" onclick="deleteCourse(${course.courseId})">Delete</button>
                             </div>
                         </div>
                     `;
@@ -321,7 +573,11 @@
                 });
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to fetch courses. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to fetch courses. Check the console for details.',
+                });
             }
         }
 
@@ -345,7 +601,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${student.name} (ID: ${student.studentId})</h5>
                                 <p class="card-text">${student.email}</p>
-                                <button class="btn btn-danger btn-sm" onclick="deleteStudent(${student.studentId})">Delete</button>
+                                <button class="btn btn-danger btn-sm btn-hover-effect" onclick="deleteStudent(${student.studentId})">Delete</button>
                             </div>
                         </div>
                     `;
@@ -353,7 +609,11 @@
                 });
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to fetch students. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to fetch students. Check the console for details.',
+                });
             }
         }
 
@@ -370,23 +630,24 @@
                 enrolledStudentsList.innerHTML = "";
 
                 enrolledStudents.forEach(enrollment => {
-                    const col = document.createElement("div");
-                    col.className = "col-md-4 mb-4 animate__animated animate__fadeIn";
-                    col.innerHTML = `
-                        <div class="card enrolled-card">
-                            <div class="card-body">
-                                <h5 class="card-title">${enrollment.studentName} (ID: ${enrollment.studentId})</h5>
-                                <p class="card-text">${enrollment.studentEmail}</p>
-                                <p class="card-text"><strong>Course:</strong> ${enrollment.courseName} (ID: ${enrollment.courseId})</p>
-                                <p class="card-text"><strong>Price:</strong> $${enrollment.coursePrice}</p>
-                            </div>
-                        </div>
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${enrollment.studentId}</td>
+                        <td>${enrollment.studentName}</td>
+                        <td>${enrollment.studentEmail}</td>
+                        <td>${enrollment.courseId}</td>
+                        <td>${enrollment.courseName}</td>
+                        <td>$${enrollment.coursePrice}</td>
                     `;
-                    enrolledStudentsList.appendChild(col);
+                    enrolledStudentsList.appendChild(row);
                 });
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to fetch enrolled students. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to fetch enrolled students. Check the console for details.',
+                });
             }
         }
 
@@ -402,12 +663,19 @@
                 }
 
                 const data = await response.json();
-                console.log(data);
-                alert("Course deleted successfully!");
-                fetchCourses(); // Refresh the courses list
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Course Deleted!',
+                    text: 'The course has been deleted successfully.',
+                });
+                fetchCourses();
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to delete course. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to delete course. Check the console for details.',
+                });
             }
         }
 
@@ -423,21 +691,29 @@
                 }
 
                 const data = await response.json();
-                console.log(data);
-                alert("Student deleted successfully!");
-                fetchStudents(); // Refresh the students list
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Student Deleted!',
+                    text: 'The student has been deleted successfully.',
+                });
+                fetchStudents();
             } catch (error) {
                 console.error("Fetch error:", error);
-                alert("Failed to delete student. Check the console for details.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to delete student. Check the console for details.',
+                });
             }
         }
 
         // Initial fetch on page load
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             fetchCourses();
             fetchStudents();
             fetchEnrolledStudents();
         });
     </script>
 </body>
+
 </html>
