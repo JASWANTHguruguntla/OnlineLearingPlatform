@@ -1,5 +1,6 @@
 # Online Learning Platform 📚💻
-Welcome to the Online Learning Platform! This platform is designed to help students and educators manage courses, students, and enrollments efficiently. Whether you're a student looking to enroll in courses or an administrator managing the platform, this system has got you covered! 🎓✨
+#### Welcome to the Online Learning Platform! 
+This platform is designed to help students and educators manage courses, students, and enrollments efficiently. Whether you're a student looking to enroll in courses or an administrator managing the platform, this system has got you covered! 🎓✨
 
 ## Features 🌟
 ##### User Authentication: Add login/signup functionality for students and admins. 🔐
@@ -60,24 +61,24 @@ Clone the Repository:
 Copy
 git clone https://github.com/your-repo/online-learning-platform.git
 cd online-learning-platform
-###### -->Set Up the Database:
+##### -->Set Up the Database:
 
 The database will be automatically created when you run the Flask app for the first time.
 
- ###### -->Run the Backend:
+##### -->Run the Backend:
 
 ###### bash
 Copy
 python app.py
 The backend will start running at http://127.0.0.1:5000.
 
-###### -->Open the Frontend:
+##### -->Open the Frontend:
 
 Open the index.html file in your browser.
 
 The frontend will communicate with the backend at http://127.0.0.1:5000.
 
-###### -->Start Using the Platform:
+##### -->Start Using the Platform:
 
 Login or Signup to access the platform.
 
@@ -122,4 +123,4 @@ Payment Integration: Integrate payment gateways for course purchases. 💳
 Admin Dashboard: Create a dedicated dashboard for administrators. 📊
 
 ## Contributors 👥
-Your Name - Project Lead 🚀
+#### JASWANTH guruguntla- Project Lead 🚀
